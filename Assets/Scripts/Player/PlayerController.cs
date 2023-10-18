@@ -6,12 +6,15 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private DynamicJoystick dynamicJoystick;
     [SerializeField] private GameEvent playerDead;
-
     private Formulas m_formulas;
+    public Animator animator;
+
+
 
     // Start is called before the first frame update
     private void Start() {
         m_formulas = new Formulas();
+        animator = GetComponent<Animator>();
 #if UNITY_ANDROID
         dynamicJoystick.gameObject.SetActive(true);
 #endif
@@ -22,13 +25,16 @@ public class PlayerController : MonoBehaviour {
 #if UNITY_ANDROID
         joystickMovement();
 #else
+
         keyboardMovement();
+        
 #endif
     }
 
     public void raisePlayerDead() {
         playerDead.Raise();
     }
+    
 
     private void keyboardMovement() {
         float xMovement = Input.GetAxisRaw("Horizontal") * Time.deltaTime * movementSpeed;
@@ -36,6 +42,14 @@ public class PlayerController : MonoBehaviour {
         Vector3 movementVector = new Vector3(xMovement, yMovement, 0);
         transform.position = m_formulas.move(transform.position, movementVector);
         updatePlayerDirection(xMovement, yMovement);
+        updatePlayerAnimator(xMovement, yMovement, movementVector.sqrMagnitude);
+
+    }
+    private void updatePlayerAnimator(float t_xMovement, float t_yMovement,float movementVector)
+    {
+        animator.SetFloat("Vertical", t_yMovement);
+        animator.SetFloat("Horizontal", t_xMovement);
+        animator.SetFloat("Speed", movementVector);
     }
 
     private void joystickMovement() {
