@@ -22,6 +22,15 @@ public class EnemyMovement : MonoBehaviour {
         Vector3 direction = m_formulas.direction(transform.position, m_player.position);
         direction = m_formulas.normalize(direction);
         transform.position += direction * (speed * Time.deltaTime);
+        // flip enemy
+        if (direction.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1); 
+        }
+        else if (direction.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1); 
+        }
         coolDown();
     }
 
