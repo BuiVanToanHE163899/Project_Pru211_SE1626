@@ -1,7 +1,10 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class ExperienceManager : MonoBehaviour
 {
@@ -12,6 +15,10 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] private GameEvent onXpPickup;
     [SerializeField] private GameEvent onLevelUp;
     [SerializeField] private AudioClip pickUpSound;
+    [SerializeField] private TMP_Text levelText;
+    [SerializeField] private TMP_Text killsText;
+
+    public int kills;
 
     private AudioSource m_audioSource;
 
@@ -30,6 +37,7 @@ public class ExperienceManager : MonoBehaviour
         currentXP.value++;
         if (currentXP.value >= requiredXPForNextLevel.value) {
             LevelUp();
+            
         }
     }
 
@@ -37,6 +45,7 @@ public class ExperienceManager : MonoBehaviour
         currentLevel.value++;
         currentXP.value = 0;
         requiredXPForNextLevel.value *= requiredXPForNextLevelMultiplyer.value;
+        UpdateValuesOfLevel();
         onLevelUp.Raise();
     }
 
@@ -48,4 +57,9 @@ public class ExperienceManager : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+    private void UpdateValuesOfLevel() 
+    {
+     levelText.text = currentLevel.value.ToString();
+    }
+    private void UpdateKillsValues() => killsText.text = kills.ToString();
 }
