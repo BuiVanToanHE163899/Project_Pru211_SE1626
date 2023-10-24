@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour {
     public float movementSpeed = 5f;
     public PlayerDirection playerDirection;
 
-  private DynamicJoystick dynamicJoystick;
+    [SerializeField] private DynamicJoystick dynamicJoystick;
     [SerializeField] private GameEvent playerDead;
     private Formulas m_formulas;
     public Animator animator;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
 #if UNITY_ANDROID
-        //joystickMovement();
+        joystickMovement();
 #else
 
         keyboardMovement();
@@ -52,13 +52,13 @@ public class PlayerController : MonoBehaviour {
         animator.SetFloat("Speed", movementVector);
     }
 
-    //private void joystickMovement() {
-    //    float xMovement = dynamicJoystick.Horizontal * Time.deltaTime * movementSpeed;
-    //    float yMovement = dynamicJoystick.Vertical * Time.deltaTime * movementSpeed;
-    //    Vector3 movementVector = new Vector3(xMovement, yMovement, 0);
-    //    transform.position = m_formulas.move(transform.position, movementVector);
-    //    updatePlayerDirection(xMovement, yMovement);
-    //}
+    private void joystickMovement() {
+        float xMovement = dynamicJoystick.Horizontal * Time.deltaTime * movementSpeed;
+        float yMovement = dynamicJoystick.Vertical * Time.deltaTime * movementSpeed;
+        Vector3 movementVector = new Vector3(xMovement, yMovement, 0);
+        transform.position = m_formulas.move(transform.position, movementVector);
+        updatePlayerDirection(xMovement, yMovement);
+    }
 
     private void updatePlayerDirection(float t_xMovement, float t_yMovement) {
         switch (t_xMovement) {
