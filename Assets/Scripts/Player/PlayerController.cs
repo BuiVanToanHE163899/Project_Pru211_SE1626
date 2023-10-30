@@ -92,11 +92,9 @@ public class PlayerController : MonoBehaviour
 		{
 			case < 0:
 				playerDirection = PlayerDirection.West;
-				transform.localScale = new Vector2(-1, 1);
 				break;
 			case > 0:
 				playerDirection = PlayerDirection.East;
-				transform.localScale = new Vector2(1, 1);
 				break;
 		}
 
