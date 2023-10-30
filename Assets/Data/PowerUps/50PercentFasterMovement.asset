@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 50PercentFasterMovement
   m_EditorClassIdentifier: 
   currentLevel: 0
-  percent: 50
+  percent: 10
