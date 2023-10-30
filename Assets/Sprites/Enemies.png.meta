@@ -105,7 +105,10 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> c7640e5 (update UI)
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -119,6 +122,9 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
+<<<<<<< HEAD
+>>>>>>> c7640e5 (update UI)
+=======
 >>>>>>> c7640e5 (update UI)
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -2698,8 +2704,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
 <<<<<<< HEAD
+<<<<<<< HEAD
     nameFileIdTable: {}
 =======
+=======
+>>>>>>> c7640e5 (update UI)
     nameFileIdTable:
       Enemies_0: -1643700906
       Enemies_1: 153244340
@@ -2823,6 +2832,9 @@ TextureImporter:
       Enemies_97: 1824979114
       Enemies_98: -950762433
       Enemies_99: 2126398907
+<<<<<<< HEAD
+>>>>>>> c7640e5 (update UI)
+=======
 >>>>>>> c7640e5 (update UI)
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

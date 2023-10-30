@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private void updatePlayerDirection(float t_xMovement, float t_yMovement) {
         switch (t_xMovement) {
             case < 0:
@@ -70,6 +71,8 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 =======
+=======
+>>>>>>> c7640e5 (update UI)
 	private void joystickMovement()
 	{
 		float xMovement = dynamicJoystick.Horizontal * Time.deltaTime * movementSpeed;
@@ -78,6 +81,9 @@ public class PlayerController : MonoBehaviour
 		transform.position = m_formulas.move(transform.position, movementVector);
 		updatePlayerDirection(xMovement, yMovement);
 	}
+<<<<<<< HEAD
+>>>>>>> c7640e5 (update UI)
+=======
 >>>>>>> c7640e5 (update UI)
 
 	private void updatePlayerDirection(float t_xMovement, float t_yMovement)
