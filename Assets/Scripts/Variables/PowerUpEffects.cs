@@ -1,11 +1,13 @@
 using UnityEngine;
 
-public abstract class PowerUpEffects : ScriptableObject {
-    public int currentLevel;
+public abstract class PowerUpEffects : ScriptableObject
+{
+	public int currentLevel;
 
-    private void OnEnable() {
-        currentLevel = 0;
-    }
+	private void OnEnable()
+	{
+		currentLevel = 0;
+	}
 
-    public abstract void apply(GameObject t_target);
+	public abstract void apply(GameObject t_target);
 }
