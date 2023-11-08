@@ -150,7 +150,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.43, y: 0.54}
+    oldSize: {x: 1.4, y: 0.93}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -195,7 +195,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.43, y: 0.54}
+    oldSize: {x: 1.4, y: 0.93}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
@@ -246,6 +246,9 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
+  onEnemyKilled:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3600214263168218204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,8 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e6c4afe5412bd48860371688bfd1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.9
-  damage: 1
+  speed: 4
+  damage: 25
 --- !u!114 &1452638617274407863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +290,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  prefab: {fileID: 4846118428014127850, guid: f710af624440ed44e92f0f2655b0c19f, type: 3}
+  onDestroyEnemy:
+    m_PersistentCalls:
+      m_Calls: []
+  prefabs: []
 --- !u!114 &7642368665231617764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,11 +312,19 @@ MonoBehaviour:
   startingHealth:
     useConstant: 1
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
-    constantValue: 5
+    constantValue: 150
   maxHealth:
     useConstant: 0
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
     constantValue: 0
+  kill:
+    useConstant: 0
+    variable: {fileID: 0}
+    constantValue: 0
+  killsText: {fileID: 0}
+  objectType: 1
+  regenerationRate: 1
+  regenerationAmount: 1
 --- !u!114 &1921667810340948191
 MonoBehaviour:
   m_ObjectHideFlags: 0

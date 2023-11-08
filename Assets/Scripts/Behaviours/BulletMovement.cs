@@ -5,21 +5,27 @@ public class BulletMovement : MonoBehaviour
 {
 	[SerializeField] private float speed = 2f;
 	[SerializeField] private int damage = 10;
+    [SerializeField] private float maxRange = 8f;
 
-	private Vector2 m_direction;
+    private Vector2 m_direction;
 	private Formulas m_formulas;
 
 	private void Start()
 	{
 		m_formulas = new Formulas();
 		Destroy(gameObject, 10f);
+
 	}
 
 	private void Update()
 	{
 		Vector3 movementVector = new Vector3(m_direction.x, m_direction.y, 0) * (Time.deltaTime * speed);
 		transform.position = m_formulas.move(transform.position, movementVector);
-	}
+        if (Vector3.Distance(transform.position, m_formulas.move(transform.position, movementVector)) > maxRange)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 	private void OnTriggerEnter2D(Collider2D t_collision)
 	{
