@@ -57,55 +57,44 @@ public class PlayerController : MonoBehaviour
 		animator.SetFloat("Speed", movementVector);
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private void updatePlayerDirection(float t_xMovement, float t_yMovement) {
-        switch (t_xMovement) {
-            case < 0:
-                playerDirection = PlayerDirection.West;
-                //transform.localScale = new Vector2(-1, 1);
-                break;
-            case > 0:
-                playerDirection = PlayerDirection.East;
-                //transform.localScale = new Vector2(1, 1);
-                break;
-        }
-=======
-=======
->>>>>>> c7640e5 (update UI)
-	private void joystickMovement()
-	{
-		float xMovement = dynamicJoystick.Horizontal * Time.deltaTime * movementSpeed;
-		float yMovement = dynamicJoystick.Vertical * Time.deltaTime * movementSpeed;
-		Vector3 movementVector = new Vector3(xMovement, yMovement, 0);
-		transform.position = m_formulas.move(transform.position, movementVector);
-		updatePlayerDirection(xMovement, yMovement);
-	}
-<<<<<<< HEAD
->>>>>>> c7640e5 (update UI)
-=======
->>>>>>> c7640e5 (update UI)
 
-	private void updatePlayerDirection(float t_xMovement, float t_yMovement)
-	{
-		switch (t_xMovement)
-		{
+
+	private void updatePlayerDirection(float t_xMovement, float t_yMovement) {
+		switch (t_xMovement) {
 			case < 0:
 				playerDirection = PlayerDirection.West;
+				//transform.localScale = new Vector2(-1, 1);
 				break;
 			case > 0:
 				playerDirection = PlayerDirection.East;
+				//transform.localScale = new Vector2(1, 1);
 				break;
 		}
 
-		switch (t_yMovement)
+		
+
+
+		 void updatePlayerDirection(float t_xMovement, float t_yMovement)
 		{
-			case < 0:
-				playerDirection = PlayerDirection.South;
-				break;
-			case > 0:
-				playerDirection = PlayerDirection.North;
-				break;
+			switch (t_xMovement)
+			{
+				case < 0:
+					playerDirection = PlayerDirection.West;
+					break;
+				case > 0:
+					playerDirection = PlayerDirection.East;
+					break;
+			}
+
+			switch (t_yMovement)
+			{
+				case < 0:
+					playerDirection = PlayerDirection.South;
+					break;
+				case > 0:
+					playerDirection = PlayerDirection.North;
+					break;
+			}
 		}
 	}
 }

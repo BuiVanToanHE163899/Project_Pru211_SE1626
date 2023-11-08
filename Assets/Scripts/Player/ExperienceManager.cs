@@ -31,10 +31,7 @@ public class ExperienceManager : MonoBehaviour
 		m_audioSource.clip = pickUpSound;
 		m_audioSource.playOnAwake = false;
 		m_audioSource.loop = false;
-        //DestroyManager destroyManager = FindObjectOfType<DestroyManager>();
-        //kills = destroyManager.GetEnemiesKilled();
-         
-        //FindObjectOfType<Health>().OnKillsChanged += UpdateKillsValues;
+     
 
     }
     private void Update()

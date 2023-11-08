@@ -1,5 +1,7 @@
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
 
 [RequireComponent(typeof(TakeDamage))]
 [RequireComponent(typeof(DestroyManager))]
@@ -21,7 +23,10 @@ public class Health : MonoBehaviour
 	private int kills = 0;
 	public ObjectType objectType;
     public event System.Action<int> OnKillsChanged;
+    [SerializeField] private float regenerationRate = 1f;
+    [SerializeField] private float regenerationAmount = 1f;
 
+    private EnemySpawner enemySpawner;
 
     void Awake()
 	{
@@ -37,9 +42,22 @@ public class Health : MonoBehaviour
 		{
 			maxHealth.value = startingHealth.value;
 		}
-	}
-    
 
+        if (objectType == ObjectType.Player)
+        {
+            StartCoroutine(RegenerateHealth());
+        }
+
+    }
+
+    private IEnumerator RegenerateHealth()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f / regenerationRate);
+            health.value = Mathf.Min(health.value + regenerationAmount, maxHealth.value); // Hồi máu 1 đơn vị mỗi giây, giới hạn không vượt quá maxHealth
+        }
+    }
     public void ReduceHealth(float damage)
 	{
 		health.value -= damage;
@@ -71,13 +89,12 @@ public class Health : MonoBehaviour
             kills++;
            OnKillsChanged?.Invoke(kills);
         }
-		
 		kill.value += kills;
-		Debug.Log(kill.value);
-        Destroy(gameObject);
+		Destroy(gameObject);
+
 	}
 
-   
+
 }
 
 
