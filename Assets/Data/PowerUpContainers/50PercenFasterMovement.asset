@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 50PercenFasterMovement
   m_EditorClassIdentifier: 
   powerUpName: Move Faster
-  powerUpDescription: Move 50% Faster
+  powerUpDescription: Move 10% Faster
   powerUpEffect: {fileID: 11400000, guid: 92fb75af0ae355946b9a2850c7650bab, type: 2}
   icon: {fileID: 2137802264, guid: 0e1e4a031af4b5d48b88349a9e005e13, type: 3}

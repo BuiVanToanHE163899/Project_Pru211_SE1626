@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 7642368665231617764}
   - component: {fileID: 1921667810340948191}
   m_Layer: 0
-  m_Name: Bat
+  m_Name: Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,7 +36,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0434783, y: 1.1162791, z: 1}
+  m_LocalScale: {x: 4.0304346, y: 2.8200002, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -246,6 +246,9 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
+  onEnemyKilled:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3600214263168218204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e6c4afe5412bd48860371688bfd1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.9
+  speed: 5
   damage: 1
 --- !u!114 &1452638617274407863
 MonoBehaviour:
@@ -287,7 +290,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  prefab: {fileID: 4846118428014127850, guid: f710af624440ed44e92f0f2655b0c19f, type: 3}
+  onDestroyEnemy:
+    m_PersistentCalls:
+      m_Calls: []
+  prefabs:
+  - prefabEnemy: {fileID: 4846118428014127850, guid: f710af624440ed44e92f0f2655b0c19f, type: 3}
+    spawnProbability: 1
+  - prefabEnemy: {fileID: 4846118428014127850, guid: 54e9081aec18b8c46bb0a788bbd9ca56, type: 3}
+    spawnProbability: 0
 --- !u!114 &7642368665231617764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,11 +316,17 @@ MonoBehaviour:
   startingHealth:
     useConstant: 1
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
-    constantValue: 5
+    constantValue: 30
   maxHealth:
     useConstant: 0
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
     constantValue: 0
+  kill:
+    useConstant: 0
+    variable: {fileID: 11400000, guid: 625afcb617e144a4ea8be84c30cb1b60, type: 2}
+    constantValue: 0
+  killsText: {fileID: 0}
+  objectType: 1
 --- !u!114 &1921667810340948191
 MonoBehaviour:
   m_ObjectHideFlags: 0

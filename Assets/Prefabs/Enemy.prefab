@@ -33,13 +33,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2730542594176502973}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2730542594176502947
 SpriteRenderer:
@@ -124,6 +124,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -150,6 +169,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -183,6 +221,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -200,6 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnemyKilled:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &3600214263168218204
@@ -243,7 +290,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  prefab: {fileID: 4846118428014127850, guid: f710af624440ed44e92f0f2655b0c19f, type: 3}
+  onDestroyEnemy:
+    m_PersistentCalls:
+      m_Calls: []
+  prefabs:
+  - prefabEnemy: {fileID: 4846118428014127850, guid: f710af624440ed44e92f0f2655b0c19f, type: 3}
+    spawnProbability: 1
+  - prefabEnemy: {fileID: 4846118428014127850, guid: 54e9081aec18b8c46bb0a788bbd9ca56, type: 3}
+    spawnProbability: 0.017
 --- !u!114 &7642368665231617764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,11 +316,17 @@ MonoBehaviour:
   startingHealth:
     useConstant: 1
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
-    constantValue: 5
+    constantValue: 10
   maxHealth:
     useConstant: 0
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
     constantValue: 0
+  kill:
+    useConstant: 0
+    variable: {fileID: 11400000, guid: 625afcb617e144a4ea8be84c30cb1b60, type: 2}
+    constantValue: 0
+  killsText: {fileID: 0}
+  objectType: 1
 --- !u!114 &1921667810340948191
 MonoBehaviour:
   m_ObjectHideFlags: 0
