@@ -293,7 +293,11 @@ MonoBehaviour:
   onDestroyEnemy:
     m_PersistentCalls:
       m_Calls: []
-  prefabs: []
+  prefabs:
+  - prefabEnemy: {fileID: 4846118428014127850, guid: f710af624440ed44e92f0f2655b0c19f, type: 3}
+    spawnProbability: 1
+  - prefabEnemy: {fileID: 4846118428014127850, guid: 54e9081aec18b8c46bb0a788bbd9ca56, type: 3}
+    spawnProbability: 1
 --- !u!114 &7642368665231617764
 MonoBehaviour:
   m_ObjectHideFlags: 0

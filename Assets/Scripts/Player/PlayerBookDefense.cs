@@ -4,8 +4,9 @@ using UnityEngine;
 public class PlayerBookDefense : PlayerBaseAttack
 {
 	public float damage = 20;
+    public int currentLevel = 0;
 
-	private List<Transform> m_books = new List<Transform>();
+    private List<Transform> m_books = new List<Transform>();
 	private float m_spawnBookCooldown = 2f;
 	private int m_maxBooks = 1;
 	private const float SPAWN_POSITION_OFFSET = 2f;
@@ -16,10 +17,12 @@ public class PlayerBookDefense : PlayerBaseAttack
 	private GameObject m_bookPrefab;
 
 
-	private void Start()
+    private void Start()
 	{
 		m_formulas = new Formulas();
 		spawnBook();
+
+		
 	}
 
 	private void Update()
@@ -53,9 +56,11 @@ public class PlayerBookDefense : PlayerBaseAttack
 			return;
 		}
 
-		Vector2 spawnPosition = new Vector2(transform.position.x + SPAWN_POSITION_OFFSET, transform.position.y);
-		GameObject tempBook = Instantiate(m_bookPrefab, spawnPosition, Quaternion.identity);
-		tempBook.GetComponent<BookBehaviour>().setDamage((int)damage);
+        Vector2 spawnPosition = new Vector2(transform.position.x + SPAWN_POSITION_OFFSET, transform.position.y);
+         GameObject tempBook = Instantiate(m_bookPrefab, spawnPosition, Quaternion.identity);
+        tempBook.transform.position = spawnPosition;
+        tempBook.transform.rotation = Quaternion.identity;
+        tempBook.GetComponent<BookBehaviour>().setDamage((int)damage);
 		tempBook.GetComponent<BookBehaviour>().setBookDefense(this);
 		tempBook.transform.parent = transform;
 		m_books.Add(tempBook.transform);
@@ -79,5 +84,7 @@ public class PlayerBookDefense : PlayerBaseAttack
 	public void removeBook(Transform t_book)
 	{
 		m_books.Remove(t_book);
-	}
+
+
+    }
 }

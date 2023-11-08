@@ -7,8 +7,9 @@ public class DestroyManager : MonoBehaviour
 {
 	public UnityEvent onDestroy;
 	public UnityEvent onDestroyEnemy;
+    private ObjectPool enemyObjectPool;
 
-	[Serializable]
+    [Serializable]
 	public class PrefabEntry
 	{
 		public GameObject prefabEnemy;

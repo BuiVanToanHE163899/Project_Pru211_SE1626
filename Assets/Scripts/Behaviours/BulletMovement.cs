@@ -5,15 +5,15 @@ public class BulletMovement : MonoBehaviour
 {
 	[SerializeField] private float speed = 2f;
 	[SerializeField] private int damage = 10;
-    [SerializeField] private float maxRange = 8f;
+    [SerializeField] private float maxRange = 6f;
 
     private Vector2 m_direction;
 	private Formulas m_formulas;
-
-	private void Start()
+    private ObjectPool bulletPool;
+    private void Start()
 	{
 		m_formulas = new Formulas();
-		Destroy(gameObject, 10f);
+		//Destroy(gameObject, 10f);
 
 	}
 
@@ -21,20 +21,19 @@ public class BulletMovement : MonoBehaviour
 	{
 		Vector3 movementVector = new Vector3(m_direction.x, m_direction.y, 0) * (Time.deltaTime * speed);
 		transform.position = m_formulas.move(transform.position, movementVector);
-        if (Vector3.Distance(transform.position, m_formulas.move(transform.position, movementVector)) > maxRange)
-        {
-            Destroy(gameObject);
-        }
+       
     }
 
 	private void OnTriggerEnter2D(Collider2D t_collision)
 	{
 		if (!t_collision.CompareTag("Enemy")) return;
 		t_collision.GetComponent<TakeDamage>()?.takeDamage(damage);
-		Destroy(gameObject);
-	}
+      
+        ReturnToPool();
 
-	public void setDirection(PlayerDirection t_direction)
+    }
+
+    public void setDirection(PlayerDirection t_direction)
 	{
 		switch (t_direction)
 		{
@@ -59,4 +58,19 @@ public class BulletMovement : MonoBehaviour
 	{
 		damage = t_damage;
 	}
+    public void SetObjectPool(ObjectPool pool)
+    {
+        bulletPool = pool;
+    }
+    private void ReturnToPool()
+    {
+        if (bulletPool != null)
+        {
+            bulletPool.ReturnObjectToPool(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }

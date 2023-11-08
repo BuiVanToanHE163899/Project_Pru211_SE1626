@@ -6,6 +6,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemyPrefabs;
+    [SerializeField] private List<GameObject> special1EnemyPrefabs;
+
     [SerializeField] private float radius = 5f;
     [SerializeField] private int maxEnemiesSpawn = 10;
     [SerializeField] private float spawnCooldown = 5f;
@@ -74,6 +76,18 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
+        if (timeElapsed >= 300f && timeElapsed < 600f)
+        {
+            SpawnNewTypeOfEnemy(TypeOfEnemy.EnemyTypeSpecial1);
+        }
+        else if (timeElapsed >= 600f && timeElapsed < 900f)
+        {
+            SpawnNewTypeOfEnemy(TypeOfEnemy.EnemyTypeSpecial2);
+        }
+        else if (timeElapsed >= 900f)
+        {
+            SpawnNewTypeOfEnemy(TypeOfEnemy.EnemyTypeSpecial3);
+        }
         if (m_nextSpawnTime <= 0)
         {
             isSpawned = false; // Reset lại biến khi đến thời điểm spawn tiếp theo
@@ -82,7 +96,6 @@ public class EnemySpawner : MonoBehaviour
         {
             //StartCoroutine(spawnEnemies(TypeOfEnemy.EnemyType1));
            
-            
 
         }
 
@@ -137,7 +150,7 @@ public class EnemySpawner : MonoBehaviour
         //    spawnEnemy(enemyType);
         //    yield return new WaitForSeconds(0.6f);
         //}
-        int spawnedEnemies = 0; // Số quái đã spawn
+        int spawnedEnemies = 0; 
         while (spawnedEnemies < maxEnemiesSpawn)
         {
             spawnEnemy(enemyType);
@@ -175,6 +188,15 @@ public class EnemySpawner : MonoBehaviour
             case TypeOfEnemy.EnemyType3:
                 selectedEnemyPrefab = enemyPrefabs[2];
                 break;
+            case TypeOfEnemy.EnemyTypeSpecial1:
+                selectedEnemyPrefab = enemyPrefabs[0];// Assign the special enemy prefab for type 1;
+                break;
+            case TypeOfEnemy.EnemyTypeSpecial2:
+                selectedEnemyPrefab = enemyPrefabs[2];// Assign the special enemy prefab for type 2;
+                break;
+            case TypeOfEnemy.EnemyTypeSpecial3:
+                selectedEnemyPrefab = enemyPrefabs[3];// Assign the special enemy prefab for type 3;
+                break;
         }
 
         if (selectedEnemyPrefab != null)
@@ -192,6 +214,9 @@ public class EnemySpawner : MonoBehaviour
     {
         EnemyType1,
         EnemyType2,
-        EnemyType3
+        EnemyType3,
+        EnemyTypeSpecial1,
+        EnemyTypeSpecial2,
+        EnemyTypeSpecial3
     }
 }
