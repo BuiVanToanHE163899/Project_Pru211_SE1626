@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
     private float timeElapsed;
     private Dictionary<TypeOfEnemy, GameObject> enemyTypeToPrefab = new Dictionary<TypeOfEnemy, GameObject>();
     private bool isSpawned = false;
+    private bool isSpecialEnemySpawned = false;
     private void Start()
     {
         resetAngle();
@@ -75,20 +76,35 @@ public class EnemySpawner : MonoBehaviour
                 isSpawned= true;
             }
         }
-
-        if (timeElapsed >= 30f && timeElapsed < 600f)
+        if (!isSpecialEnemySpawned && timeElapsed >= 300f && timeElapsed < 305f)
         {
-            //SpawnNewTypeOfEnemy(TypeOfEnemy.EnemyTypeSpecial1);
             spawnSepicalEnemy(TypeOfEnemySpecial.EnemyTypeSpecial1);
+            isSpecialEnemySpawned = true;
         }
-        else if (timeElapsed >= 600f && timeElapsed < 900f)
+        if (!isSpecialEnemySpawned && timeElapsed >= 600f && timeElapsed < 605f)
         {
-            //SpawnNewTypeOfEnemy(TypeOfEnemySpecial.EnemyTypeSpecial2);
+            spawnSepicalEnemy(TypeOfEnemySpecial.EnemyTypeSpecial2);
+            isSpecialEnemySpawned = true;
         }
-        else if (timeElapsed >= 900f)
+        if (!isSpecialEnemySpawned && timeElapsed >= 900f && timeElapsed < 1200f)
         {
-            //SpawnNewTypeOfEnemy(TypeOfEnemySpecial.EnemyTypeSpecial3);
+            spawnSepicalEnemy(TypeOfEnemySpecial.EnemyTypeSpecial3);
+            isSpecialEnemySpawned = true;
         }
+
+        //if (timeElapsed >= 30f && timeElapsed < 600f)
+        //{
+
+        //    spawnSepicalEnemy(TypeOfEnemySpecial.EnemyTypeSpecial1);
+        //}
+        //else if (timeElapsed >= 600f && timeElapsed < 900f)
+        //{
+        //    //SpawnNewTypeOfEnemy(TypeOfEnemySpecial.EnemyTypeSpecial2);
+        //}
+        //else if (timeElapsed >= 900f)
+        //{
+        //    //SpawnNewTypeOfEnemy(TypeOfEnemySpecial.EnemyTypeSpecial3);
+        //}
         if (m_nextSpawnTime <= 0)
         {
             isSpawned = false; // Reset lại biến khi đến thời điểm spawn tiếp theo
@@ -131,8 +147,8 @@ public class EnemySpawner : MonoBehaviour
         float angleInRadian = m_angle * Mathf.Deg2Rad;
         Vector3 pos = new Vector3(Mathf.Cos(angleInRadian), Mathf.Sin(angleInRadian), 0) * radius;
         //Instantiate(enemyPrefabs[0], center + pos, Quaternion.identity);
-        //Instantiate(specialEnemyPrefabs[(int)enemyType], center + pos, Quaternion.identity);
-                    
+        Instantiate(specialEnemyPrefabs[(int)enemyType], center + pos, Quaternion.identity);
+
 
     }
     private void resetAngle()
@@ -224,16 +240,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
 
-        //if (selectedEnemyPrefab != null)
-        //{
-        //    Vector3 center = transform.position;
-        //    float maxAngle = m_angle + ANGLE_DELTA;
-        //    float minAngle = m_angle - ANGLE_DELTA;
-        //    m_angle = Random.Range(minAngle, maxAngle);
-        //    float angleInRadian = m_angle * Mathf.Deg2Rad;
-        //    Vector3 pos = new Vector3(Mathf.Cos(angleInRadian), Mathf.Sin(angleInRadian), 0) * radius;
-        //    Instantiate(selectedEnemyPrefab, center + pos, Quaternion.identity);
-        //}
+      
     }
     public enum TypeOfEnemy
     {
