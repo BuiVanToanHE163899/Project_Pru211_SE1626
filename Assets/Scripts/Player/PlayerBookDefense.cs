@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBookDefense : PlayerBaseAttack
@@ -51,31 +51,54 @@ public class PlayerBookDefense : PlayerBaseAttack
 
 	private void spawnBook()
 	{
-		m_maxBooks = currentLevel;
-		if (m_maxBooks <= m_books.Count)
-		{
-			return;
-		}
+
+        //m_maxBooks = currentLevel; // Đặt số lượng sách muốn spawn ở đây
+
+        //for (int i = 0; i < m_maxBooks; i++)
+        //{
+        //    Vector2 spawnPosition = new Vector2(transform.position.x + SPAWN_POSITION_OFFSET, transform.position.y);
+        //    GameObject tempBook = Instantiate(m_bookPrefab, spawnPosition, Quaternion.identity);
+        //    tempBook.transform.position = spawnPosition;
+        //    tempBook.transform.rotation = Quaternion.identity;
+        //    tempBook.GetComponent<BookBehaviour>().setDamage((int)damage);
+        //    tempBook.GetComponent<BookBehaviour>().setBookDefense(this);
+        //    tempBook.transform.parent = transform;
+        //    m_books.Add(tempBook.transform);
+
+        //    float separation = 360 / m_books.Count;
+        //    separation *= Mathf.Deg2Rad;
+        //    Vector2 previousPosition = m_books[0].position;
+        //    for (int j = 1; j < m_books.Count; j++)
+        //    {
+        //        Transform book = m_books[j];
+        //        book.position = m_formulas.rotate(previousPosition, separation);
+        //        previousPosition = book.position;
+        //    }
+        //}
+        if (m_maxBooks <= m_books.Count)
+        {
+            return;
+        }
 
         Vector2 spawnPosition = new Vector2(transform.position.x + SPAWN_POSITION_OFFSET, transform.position.y);
-         GameObject tempBook = Instantiate(m_bookPrefab, spawnPosition, Quaternion.identity);
+        GameObject tempBook = Instantiate(m_bookPrefab, spawnPosition, Quaternion.identity);
         tempBook.transform.position = spawnPosition;
         tempBook.transform.rotation = Quaternion.identity;
         tempBook.GetComponent<BookBehaviour>().setDamage((int)damage);
-		tempBook.GetComponent<BookBehaviour>().setBookDefense(this);
-		tempBook.transform.parent = transform;
-		m_books.Add(tempBook.transform);
+        tempBook.GetComponent<BookBehaviour>().setBookDefense(this);
+        tempBook.transform.parent = transform;
+        m_books.Add(tempBook.transform);
 
-		float separation = 360 / m_books.Count;
-		separation *= Mathf.Deg2Rad;
-		Vector2 previousPosition = m_books[0].position;
-		for (int i = 1; i < m_books.Count; i++)
-		{
-			Transform book = m_books[i];
-			book.position = m_formulas.rotate(previousPosition, separation);
-			previousPosition = book.position;
-		}
-	}
+        float separation = 360 / m_books.Count;
+        separation *= Mathf.Deg2Rad;
+        Vector2 previousPosition = m_books[0].position;
+        for (int i = 1; i < m_books.Count; i++)
+        {
+            Transform book = m_books[i];
+            book.position = m_formulas.rotate(previousPosition, separation);
+            previousPosition = book.position;
+        }
+    }
 
 	public void setBookPrefab(GameObject t_gameObject)
 	{
