@@ -8,7 +8,7 @@ public class PlayerShoot : PlayerBaseAttack
 	public float damage = 10;
 
 	[SerializeField] private GameObject bullet;
-	[SerializeField] private float cooldown;
+	[SerializeField] public float cooldown;
 
 	private PlayerController m_playerController;
 	private float m_nextShootTime;
