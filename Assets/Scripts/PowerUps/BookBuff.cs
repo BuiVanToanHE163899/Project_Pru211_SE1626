@@ -16,6 +16,8 @@ public class BookBuff : PowerUpEffects
 			tempPlayerBookDefense.setBookPrefab(book);
 		}
 		tempPlayerBookDefense.damage *= damageMultiplier;
-		currentLevel++;
-	}
+        currentLevel++;
+        tempPlayerBookDefense.currentLevel=currentLevel;
+
+    }
 }

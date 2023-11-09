@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 597170dfc96112c4cb5c7aeca12ec9ea, type: 3}
-  m_Name: 50PercenFasterMovement
+  m_Name: 10PercenFasterMovement
   m_EditorClassIdentifier: 
   powerUpName: Move Faster
   powerUpDescription: Move 10% Faster

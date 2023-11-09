@@ -4,8 +4,11 @@ using UnityEngine;
 public class AxeBuff : PowerUpEffects
 {
 	public GameObject axe;
+    public float damageMultiplier = 1.2f;
+    public float spawnAxeCooldown = 0.2f;
 
-	public override void apply(GameObject t_target)
+
+    public override void apply(GameObject t_target)
 	{
 		PlayerAxeAttack playerAxeAttack = t_target.GetComponent<PlayerAxeAttack>();
 		if (playerAxeAttack == null)
@@ -13,6 +16,8 @@ public class AxeBuff : PowerUpEffects
 			playerAxeAttack = t_target.AddComponent<PlayerAxeAttack>();
 			playerAxeAttack.setAxePrefab(axe);
 		}
-		currentLevel++;
+        playerAxeAttack.m_spawnAxeCooldown-=spawnAxeCooldown;
+
+        currentLevel++;
 	}
 }

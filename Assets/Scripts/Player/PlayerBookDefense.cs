@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerBookDefense : PlayerBaseAttack
 {
 	public float damage = 20;
-    public int currentLevel = 0;
+    public int currentLevel;
 
     private List<Transform> m_books = new List<Transform>();
 	private float m_spawnBookCooldown = 2f;
@@ -51,6 +51,7 @@ public class PlayerBookDefense : PlayerBaseAttack
 
 	private void spawnBook()
 	{
+		m_maxBooks = currentLevel;
 		if (m_maxBooks <= m_books.Count)
 		{
 			return;

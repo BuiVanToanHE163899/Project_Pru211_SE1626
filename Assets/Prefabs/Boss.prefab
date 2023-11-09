@@ -246,9 +246,6 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
-  onEnemyKilled:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3600214263168218204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +320,7 @@ MonoBehaviour:
     constantValue: 0
   kill:
     useConstant: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: 625afcb617e144a4ea8be84c30cb1b60, type: 2}
     constantValue: 0
   killsText: {fileID: 0}
   objectType: 1

@@ -33,8 +33,9 @@ public class Health : MonoBehaviour
 		if (createHealth)
 		{
 			health = ScriptableObject.CreateInstance<FloatVariable>();
-		}
-		if (resetHealth)
+          
+        }
+		if (resetHealth&& health != null)
 		{
 			health.value = startingHealth.value;
 		}
@@ -43,10 +44,18 @@ public class Health : MonoBehaviour
 			maxHealth.value = startingHealth.value;
 		}
 
-        if (objectType == ObjectType.Player)
-        {
-            StartCoroutine(RegenerateHealth());
-        }
+        //if (objectType == ObjectType.Player)
+        //{
+        //    StartCoroutine(RegenerateHealth());
+        //}
+        //if (objectType == ObjectType.Enemy)
+        //{
+
+        //    StartCoroutine(IncreaseHealthAfterDelay(5 * 60, 1.5f));
+
+           
+        //    StartCoroutine(IncreaseHealthAfterDelay(10 * 60, 2.0f));
+        //}
 
     }
 
@@ -62,7 +71,7 @@ public class Health : MonoBehaviour
 	{
 		health.value -= damage;
 		if (health.value < 0)
-		{
+        {
 			die();
 		}
 	}
@@ -86,15 +95,21 @@ public class Health : MonoBehaviour
 	{
         if (objectType == ObjectType.Enemy)
         {
-            kills++;
-           OnKillsChanged?.Invoke(kills);
+            OnKillsChanged?.Invoke(kills);
         }
-		kill.value += kills;
-		Destroy(gameObject);
+        kill.value ++;
+        Debug.Log(kill.value);
+        Destroy(gameObject);
 
 	}
 
+    private IEnumerator IncreaseHealthAfterDelay(float delayInSeconds, float increaseMultiplier)
+    {
+        yield return new WaitForSeconds(delayInSeconds);
 
+        maxHealth.value *= increaseMultiplier;
+
+    }
 }
 
 

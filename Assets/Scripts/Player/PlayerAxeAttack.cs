@@ -5,9 +5,8 @@ public class PlayerAxeAttack : MonoBehaviour
 {
 	[SerializeField] private GameObject m_axe;
 	private float m_nextSpawnTime;
-	private float m_spawnAxeCooldown = 2f;
+	public float m_spawnAxeCooldown = 2f;
 
-    [SerializeField] private ObjectPool axeObjectPool;
 
     private void Start()
 	{
@@ -36,12 +35,7 @@ public class PlayerAxeAttack : MonoBehaviour
 
 	private void spawnAxe()
 	{
-        //Instantiate(m_axe, transform.position, quaternion.identity);
-        GameObject axe = axeObjectPool.GetObjectFromPool(m_axe);
-        if (axe != null)
-        {
-            axe.transform.position = transform.position;
-            axe.transform.rotation = quaternion.identity;
-        }
+		Instantiate(m_axe, transform.position, quaternion.identity);
+	
     }
 }

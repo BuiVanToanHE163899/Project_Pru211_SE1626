@@ -87,12 +87,12 @@ public class ExperienceManager : MonoBehaviour
 	{
 		levelText.text = currentLevel.value.ToString();
 	}
-    private void UpdateKillsValues(float newKills)
-    {
-        currentKills.value += newKills;
+ //   private void UpdateKillsValues(float newKills)
+ //   {
+ //       currentKills.value += newKills;
 		
 
-	}
+	//}
   private void  UpdateKillsUI() => killsText.text = currentKills.value.ToString();
     private void UpdateCoinsValues() => coinText.text = coin.ToString();
 

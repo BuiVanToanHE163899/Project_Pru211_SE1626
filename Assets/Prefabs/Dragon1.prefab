@@ -246,9 +246,6 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
-  onEnemyKilled:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3600214263168218204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,12 +290,11 @@ MonoBehaviour:
   onDestroyEnemy:
     m_PersistentCalls:
       m_Calls: []
-  prefab: {fileID: 4846118428014127850, guid: f710af624440ed44e92f0f2655b0c19f, type: 3}
   prefabs:
   - prefabEnemy: {fileID: 4846118428014127850, guid: f710af624440ed44e92f0f2655b0c19f, type: 3}
-    spawnProbability: 1
+    spawnProbability: 0.9
   - prefabEnemy: {fileID: 4846118428014127850, guid: 54e9081aec18b8c46bb0a788bbd9ca56, type: 3}
-    spawnProbability: 0.03
+    spawnProbability: 0
 --- !u!114 &7642368665231617764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,6 +324,8 @@ MonoBehaviour:
     constantValue: 0
   killsText: {fileID: 0}
   objectType: 1
+  regenerationRate: 1
+  regenerationAmount: 1
 --- !u!114 &1921667810340948191
 MonoBehaviour:
   m_ObjectHideFlags: 0

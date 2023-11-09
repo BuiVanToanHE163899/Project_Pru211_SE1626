@@ -349,15 +349,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04297bca247a65d41bbe87f37ee67f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs: []
-  special1EnemyPrefabs: []
-  radius: 25
-  maxEnemiesSpawn: 10
+  enemyPrefabs:
+  - {fileID: 2730542594176502973, guid: 70d8472062367a64ebaf6a930402f5a4, type: 3}
+  - {fileID: 2730542594176502973, guid: 018c3e856a487b842b7a366b79969023, type: 3}
+  - {fileID: 2730542594176502973, guid: 9c91d1df1ea6e0a4299c53097f1f64bf, type: 3}
+  specialEnemyPrefabs:
+  - {fileID: 2730542594176502973, guid: 84aa0ad0ba05ba64ab61ea8838dc4217, type: 3}
+  - {fileID: 2730542594176502973, guid: 84aa0ad0ba05ba64ab61ea8838dc4217, type: 3}
+  - {fileID: 2730542594176502973, guid: 84aa0ad0ba05ba64ab61ea8838dc4217, type: 3}
+  radius: 26
+  maxEnemiesSpawn: 5
   spawnCooldown: 5
   maxEnemiesMultipliyer:
     useConstant: 1
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
-    constantValue: 2
+    constantValue: 1.2
   playerController: {fileID: 5799469502635363591}
   timeToSpawnType2: 300
   timeToSpawnType3: 600
@@ -582,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15ebf8fbd27e944b8d6c51d5f643dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4.2
+  movementSpeed: 4.5
   playerDirection: 0
   dynamicJoystick: {fileID: 0}
   playerDead: {fileID: 11400000, guid: 91b2b758a10a480499c63f01fb489f52, type: 2}
@@ -662,19 +668,19 @@ MonoBehaviour:
   startingHealth:
     useConstant: 1
     variable: {fileID: 11400000, guid: 8d83e6e0835a7734da7d04b9e3773842, type: 2}
-    constantValue: 100
+    constantValue: 10
   maxHealth:
     useConstant: 0
     variable: {fileID: 11400000, guid: 8d83e6e0835a7734da7d04b9e3773842, type: 2}
     constantValue: 0
   kill:
     useConstant: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: 625afcb617e144a4ea8be84c30cb1b60, type: 2}
     constantValue: 0
   killsText: {fileID: 0}
   objectType: 0
   regenerationRate: 1
-  regenerationAmount: 1
+  regenerationAmount: 0.5
 --- !u!114 &1551418634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,9 +763,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onEnemyKilled:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!198 &5799469503278311921
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -1330,7 +1333,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    gravitySource: 1
+    gravitySource: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -5561,7 +5564,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.9222846
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
