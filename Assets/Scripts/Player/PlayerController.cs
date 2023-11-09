@@ -63,40 +63,26 @@ public class PlayerController : MonoBehaviour
 		switch (t_xMovement) {
 			case < 0:
 				playerDirection = PlayerDirection.West;
-				//transform.localScale = new Vector2(-1, 1);
 				break;
 			case > 0:
 				playerDirection = PlayerDirection.East;
-				//transform.localScale = new Vector2(1, 1);
 				break;
-		}
+              
+        }
 
-		
+        switch (t_yMovement)
+        {
+            case < 0:
+                playerDirection = PlayerDirection.South;
+                break;
+            case > 0:
+                playerDirection = PlayerDirection.North;
+                break;
+        }
 
 
-		 void updatePlayerDirection(float t_xMovement, float t_yMovement)
-		{
-			switch (t_xMovement)
-			{
-				case < 0:
-					playerDirection = PlayerDirection.West;
-					break;
-				case > 0:
-					playerDirection = PlayerDirection.East;
-					break;
-			}
-
-			switch (t_yMovement)
-			{
-				case < 0:
-					playerDirection = PlayerDirection.South;
-					break;
-				case > 0:
-					playerDirection = PlayerDirection.North;
-					break;
-			}
-		}
-	}
+  
+    }
 }
 
 public enum PlayerDirection

@@ -8,12 +8,12 @@ public class PlayerShoot : PlayerBaseAttack
 	public float damage = 10;
 
 	[SerializeField] private GameObject bullet;
-	[SerializeField] private float cooldown;
+	[SerializeField] public float cooldown;
 
 	private PlayerController m_playerController;
 	private float m_nextShootTime;
-
-	private void Start()
+    [SerializeField] private ObjectPool bulletPool;
+    private void Start()
 	{
 		m_playerController = GetComponent<PlayerController>();
 	}
@@ -53,11 +53,14 @@ public class PlayerShoot : PlayerBaseAttack
 
 	private void shootBullet(PlayerDirection t_playerDirection)
 	{
-		GameObject tempBullet = Instantiate(bullet, transform.position, Quaternion.identity);
-		BulletMovement tempBulletMovement = tempBullet.GetComponent<BulletMovement>();
+        //GameObject tempBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+        GameObject tempBullet = bulletPool.GetObjectFromPool(bullet);
+		tempBullet.transform.position = transform.position;
+        BulletMovement tempBulletMovement = tempBullet.GetComponent<BulletMovement>();
 		tempBulletMovement.setDirection(t_playerDirection);
 		tempBulletMovement.setDamage((int)damage);
-	}
+        tempBulletMovement.SetObjectPool(bulletPool);
+    }
 
 	private void shootLevel2()
 	{

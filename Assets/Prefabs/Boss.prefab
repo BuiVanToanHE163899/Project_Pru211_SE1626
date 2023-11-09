@@ -146,10 +146,11 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 2.271387, y: -1.639385}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.4, y: 0.93}
     oldSize: {x: 1.4, y: 0.93}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
@@ -157,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4375, y: 1.34375}
+  m_Size: {x: 2.8521981, y: 4.62252}
   m_EdgeRadius: 0
 --- !u!61 &6101065904870753031
 BoxCollider2D:
@@ -191,7 +192,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 2.2491062, y: -1.6466146}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -202,7 +203,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4375, y: 1.34375}
+  m_Size: {x: 2.8803813, y: 4.6369786}
   m_EdgeRadius: 0
 --- !u!50 &467798303465179358
 Rigidbody2D:
@@ -261,8 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e6c4afe5412bd48860371688bfd1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.9
-  damage: 1
+  speed: 4
+  damage: 25
 --- !u!114 &1452638617274407863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,7 +294,11 @@ MonoBehaviour:
   onDestroyEnemy:
     m_PersistentCalls:
       m_Calls: []
-  prefabs: []
+  prefabs:
+  - prefabEnemy: {fileID: 4846118428014127850, guid: f710af624440ed44e92f0f2655b0c19f, type: 3}
+    spawnProbability: 1
+  - prefabEnemy: {fileID: 4846118428014127850, guid: 54e9081aec18b8c46bb0a788bbd9ca56, type: 3}
+    spawnProbability: 1
 --- !u!114 &7642368665231617764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,17 +317,17 @@ MonoBehaviour:
   startingHealth:
     useConstant: 1
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
-    constantValue: 5
+    constantValue: 150
   maxHealth:
     useConstant: 0
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
     constantValue: 0
   kill:
     useConstant: 0
-    variable: {fileID: 0}
+    variable: {fileID: 11400000, guid: 625afcb617e144a4ea8be84c30cb1b60, type: 2}
     constantValue: 0
   killsText: {fileID: 0}
-  objectType: 0
+  objectType: 1
   regenerationRate: 1
   regenerationAmount: 1
 --- !u!114 &1921667810340948191

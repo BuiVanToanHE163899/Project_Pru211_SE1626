@@ -6,6 +6,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemyPrefabs;
+    [SerializeField] private List<GameObject> specialEnemyPrefabs;
+
     [SerializeField] private float radius = 5f;
     [SerializeField] private int maxEnemiesSpawn = 10;
     [SerializeField] private float spawnCooldown = 5f;
@@ -20,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
     private float timeElapsed;
     private Dictionary<TypeOfEnemy, GameObject> enemyTypeToPrefab = new Dictionary<TypeOfEnemy, GameObject>();
     private bool isSpawned = false;
+    private bool isSpecialEnemySpawned = false;
     private void Start()
     {
         resetAngle();
@@ -63,17 +66,45 @@ public class EnemySpawner : MonoBehaviour
                 }
                 else if (randomType == 2)
                 {
-                    StartCoroutine(spawnEnemies(TypeOfEnemy.EnemyType2));
+                    //StartCoroutine(spawnEnemies(TypeOfEnemy.EnemyType2));
                 }
                 else
                 {
-                    StartCoroutine(spawnEnemies(TypeOfEnemy.EnemyType3));
+                    //StartCoroutine(spawnEnemies(TypeOfEnemy.EnemyType3));
 
                 }
                 isSpawned= true;
             }
         }
+        if (!isSpecialEnemySpawned && timeElapsed >= 300f && timeElapsed < 305f)
+        {
+            spawnSepicalEnemy(TypeOfEnemySpecial.EnemyTypeSpecial1);
+            isSpecialEnemySpawned = true;
+        }
+        if (!isSpecialEnemySpawned && timeElapsed >= 600f && timeElapsed < 605f)
+        {
+            spawnSepicalEnemy(TypeOfEnemySpecial.EnemyTypeSpecial2);
+            isSpecialEnemySpawned = true;
+        }
+        if (!isSpecialEnemySpawned && timeElapsed >= 900f && timeElapsed < 1200f)
+        {
+            spawnSepicalEnemy(TypeOfEnemySpecial.EnemyTypeSpecial3);
+            isSpecialEnemySpawned = true;
+        }
 
+        //if (timeElapsed >= 30f && timeElapsed < 600f)
+        //{
+
+        //    spawnSepicalEnemy(TypeOfEnemySpecial.EnemyTypeSpecial1);
+        //}
+        //else if (timeElapsed >= 600f && timeElapsed < 900f)
+        //{
+        //    //SpawnNewTypeOfEnemy(TypeOfEnemySpecial.EnemyTypeSpecial2);
+        //}
+        //else if (timeElapsed >= 900f)
+        //{
+        //    //SpawnNewTypeOfEnemy(TypeOfEnemySpecial.EnemyTypeSpecial3);
+        //}
         if (m_nextSpawnTime <= 0)
         {
             isSpawned = false; // Reset lại biến khi đến thời điểm spawn tiếp theo
@@ -82,7 +113,6 @@ public class EnemySpawner : MonoBehaviour
         {
             //StartCoroutine(spawnEnemies(TypeOfEnemy.EnemyType1));
            
-            
 
         }
 
@@ -108,7 +138,19 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(enemyPrefabs[(int)enemyType], center + pos, Quaternion.identity);
 
     }
+    private void spawnSepicalEnemy(TypeOfEnemySpecial enemyType)
+    {
+        float maxAngle = m_angle + ANGLE_DELTA;
+        float minAngle = m_angle - ANGLE_DELTA;
+        Vector3 center = transform.position;
+        m_angle = Random.Range(minAngle, maxAngle);
+        float angleInRadian = m_angle * Mathf.Deg2Rad;
+        Vector3 pos = new Vector3(Mathf.Cos(angleInRadian), Mathf.Sin(angleInRadian), 0) * radius;
+        //Instantiate(enemyPrefabs[0], center + pos, Quaternion.identity);
+        Instantiate(specialEnemyPrefabs[(int)enemyType], center + pos, Quaternion.identity);
 
+
+    }
     private void resetAngle()
     {
         switch (playerController.playerDirection)
@@ -137,7 +179,7 @@ public class EnemySpawner : MonoBehaviour
         //    spawnEnemy(enemyType);
         //    yield return new WaitForSeconds(0.6f);
         //}
-        int spawnedEnemies = 0; // Số quái đã spawn
+        int spawnedEnemies = 0; 
         while (spawnedEnemies < maxEnemiesSpawn)
         {
             spawnEnemy(enemyType);
@@ -175,23 +217,44 @@ public class EnemySpawner : MonoBehaviour
             case TypeOfEnemy.EnemyType3:
                 selectedEnemyPrefab = enemyPrefabs[2];
                 break;
+        
         }
 
-        if (selectedEnemyPrefab != null)
+   
+    }
+    private void SpawnNewTypeOfEnemySpecial(TypeOfEnemySpecial enemyType)
+    {
+        GameObject selectedEnemyPrefab = null;
+
+        switch (enemyType)
         {
-            Vector3 center = transform.position;
-            float maxAngle = m_angle + ANGLE_DELTA;
-            float minAngle = m_angle - ANGLE_DELTA;
-            m_angle = Random.Range(minAngle, maxAngle);
-            float angleInRadian = m_angle * Mathf.Deg2Rad;
-            Vector3 pos = new Vector3(Mathf.Cos(angleInRadian), Mathf.Sin(angleInRadian), 0) * radius;
-            Instantiate(selectedEnemyPrefab, center + pos, Quaternion.identity);
+            
+            case TypeOfEnemySpecial.EnemyTypeSpecial1:
+                selectedEnemyPrefab = specialEnemyPrefabs[0];// Assign the special enemy prefab for type 1;
+                break;
+            case TypeOfEnemySpecial.EnemyTypeSpecial2:
+                selectedEnemyPrefab = specialEnemyPrefabs[2];// Assign the special enemy prefab for type 2;
+                break;
+            case TypeOfEnemySpecial.EnemyTypeSpecial3:
+                selectedEnemyPrefab = specialEnemyPrefabs[3];// Assign the special enemy prefab for type 3;
+                break;
         }
+
+      
     }
     public enum TypeOfEnemy
     {
         EnemyType1,
         EnemyType2,
-        EnemyType3
+        EnemyType3,
+   
     }
+    public enum TypeOfEnemySpecial
+    {
+      
+        EnemyTypeSpecial1,
+        EnemyTypeSpecial2,
+        EnemyTypeSpecial3
+    }
+
 }

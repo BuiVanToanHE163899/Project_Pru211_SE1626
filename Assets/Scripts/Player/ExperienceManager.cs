@@ -20,7 +20,9 @@ public class ExperienceManager : MonoBehaviour
 	private int coin;		
 	private AudioSource m_audioSource;
 
-	private void Start()
+    [SerializeField] private ObjectPool xpObjectPool;
+    [SerializeField] private ObjectPool coinObjectPool;
+    private void Start()
 	{
 		currentLevel.value = 1;
 		currentKills.value = 0;
@@ -65,16 +67,19 @@ public class ExperienceManager : MonoBehaviour
 			AddXP();
 			onXpPickup.Raise();
 			m_audioSource.Play();
-			Destroy(collision.gameObject);
-		}
+            //Destroy(collision.gameObject);
+            xpObjectPool.ReturnObjectToPool(collision.gameObject);
+        }
 		if (collision.CompareTag("Coin"))
 		{
 			coin++;
 			onXpPickup.Raise();
 			m_audioSource.Play();
 
-			Destroy(collision.gameObject);
-			UpdateCoinsValues();
+            //Destroy(collision.gameObject);
+            coinObjectPool.ReturnObjectToPool(collision.gameObject);
+
+            UpdateCoinsValues();
 
 		}
 	}
@@ -82,12 +87,12 @@ public class ExperienceManager : MonoBehaviour
 	{
 		levelText.text = currentLevel.value.ToString();
 	}
-    private void UpdateKillsValues(float newKills)
-    {
-        currentKills.value += newKills;
-		Debug.Log(currentKills.value.ToString());
+ //   private void UpdateKillsValues(float newKills)
+ //   {
+ //       currentKills.value += newKills;
+		
 
-	}
+	//}
   private void  UpdateKillsUI() => killsText.text = currentKills.value.ToString();
     private void UpdateCoinsValues() => coinText.text = coin.ToString();
 

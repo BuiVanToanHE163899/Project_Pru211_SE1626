@@ -4,40 +4,59 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] private GameObject objectPrefab;
-    [SerializeField] private int poolSize = 10;
+    [System.Serializable]
+    public class PoolEntry
+    {
+        public GameObject prefab;
+        public int poolSize;
+    }
 
-    private List<GameObject> objectPool;
+    [SerializeField] private List<PoolEntry> poolEntries;
+    private Dictionary<GameObject, List<GameObject>> pooledObjects;
 
     private void Start()
     {
-        // Initialize the object pool
-        objectPool = new List<GameObject>();
+        pooledObjects = new Dictionary<GameObject, List<GameObject>>();
 
-        for (int i = 0; i < poolSize; i++)
+        // Create pools for each prefab
+        foreach (var entry in poolEntries)
         {
-            GameObject obj = Instantiate(objectPrefab);
-            obj.SetActive(false);
-            objectPool.Add(obj);
+            GameObject prefab = entry.prefab;
+            int poolSize = entry.poolSize;
+
+            List<GameObject> objectList = new List<GameObject>();
+            for (int i = 0; i < poolSize; i++)
+            {
+                GameObject obj = Instantiate(prefab);
+                obj.SetActive(false);
+                objectList.Add(obj);
+            }
+            pooledObjects.Add(prefab, objectList);
         }
     }
 
-    public GameObject GetObjectFromPool()
+    public GameObject GetObjectFromPool(GameObject prefab)
     {
         // Find and return an inactive object from the pool
-        foreach (GameObject obj in objectPool)
+        if (pooledObjects.ContainsKey(prefab))
         {
-            if (!obj.activeSelf)
+            foreach (GameObject obj in pooledObjects[prefab])
             {
-                obj.SetActive(true);
-                return obj;
+                if (!obj.activeSelf)
+                {
+                    obj.SetActive(true);
+                    return obj;
+                }
             }
+
+            // If all objects in the pool are active, create a new one
+            GameObject newObj = Instantiate(prefab);
+            newObj.SetActive(true);
+            pooledObjects[prefab].Add(newObj);
+            return newObj;
         }
 
-        // If all objects in the pool are active, create a new one
-        GameObject newObj = Instantiate(objectPrefab);
-        objectPool.Add(newObj);
-        return newObj;
+        return null;
     }
 
     public void ReturnObjectToPool(GameObject obj)

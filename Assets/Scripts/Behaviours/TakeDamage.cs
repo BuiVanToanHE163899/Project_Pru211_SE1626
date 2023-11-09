@@ -9,9 +9,7 @@ public class TakeDamage : MonoBehaviour
 
 
     public UnityEvent onTakeDamage;
-    public UnityEvent onEnemyKilled;
-
-    // Start is called before the first frame update
+  
     void Start()
 	{
 		health = GetComponent<Health>();
@@ -23,7 +21,7 @@ public class TakeDamage : MonoBehaviour
 	{
 		if (hasHealth)
 			health.ReduceHealth(damage);
-      
-        onTakeDamage.Invoke();
+
+		onTakeDamage.Invoke();
 	}
 }

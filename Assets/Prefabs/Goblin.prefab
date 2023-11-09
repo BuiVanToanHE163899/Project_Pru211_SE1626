@@ -246,9 +246,6 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
-  onEnemyKilled:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3600214263168218204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +313,7 @@ MonoBehaviour:
   startingHealth:
     useConstant: 1
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
-    constantValue: 30
+    constantValue: 10
   maxHealth:
     useConstant: 0
     variable: {fileID: 11400000, guid: 88e1b2881712edf419d725ff797372bc, type: 2}
@@ -327,6 +324,8 @@ MonoBehaviour:
     constantValue: 0
   killsText: {fileID: 0}
   objectType: 1
+  regenerationRate: 1
+  regenerationAmount: 1
 --- !u!114 &1921667810340948191
 MonoBehaviour:
   m_ObjectHideFlags: 0

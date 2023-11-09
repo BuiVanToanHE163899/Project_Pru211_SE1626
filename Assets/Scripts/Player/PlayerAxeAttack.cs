@@ -5,9 +5,10 @@ public class PlayerAxeAttack : MonoBehaviour
 {
 	[SerializeField] private GameObject m_axe;
 	private float m_nextSpawnTime;
-	private float m_spawnAxeCooldown = 2f;
+	public float m_spawnAxeCooldown = 2f;
 
-	private void Start()
+
+    private void Start()
 	{
 		spawnAxe();
 	}
@@ -35,5 +36,6 @@ public class PlayerAxeAttack : MonoBehaviour
 	private void spawnAxe()
 	{
 		Instantiate(m_axe, transform.position, quaternion.identity);
-	}
+	
+    }
 }

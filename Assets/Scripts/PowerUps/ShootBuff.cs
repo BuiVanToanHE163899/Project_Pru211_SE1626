@@ -4,8 +4,9 @@ using UnityEngine;
 public class ShootBuff : PowerUpEffects
 {
 	public float damageMultiplier;
+	public float cooldown=0.4f;
 
-	private void OnEnable()
+    private void OnEnable()
 	{
 		currentLevel = 1;
 	}
@@ -15,6 +16,7 @@ public class ShootBuff : PowerUpEffects
 		PlayerShoot tempPlayerShoot = t_target.GetComponent<PlayerShoot>();
 		tempPlayerShoot.currentLevel++;
 		tempPlayerShoot.damage *= damageMultiplier;
+		tempPlayerShoot.cooldown-= cooldown;
 		currentLevel++;
 	}
 }

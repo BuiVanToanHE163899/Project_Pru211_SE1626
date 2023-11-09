@@ -1,11 +1,12 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBookDefense : PlayerBaseAttack
 {
 	public float damage = 20;
+    public int currentLevel;
 
-	private List<Transform> m_books = new List<Transform>();
+    private List<Transform> m_books = new List<Transform>();
 	private float m_spawnBookCooldown = 2f;
 	private int m_maxBooks = 1;
 	private const float SPAWN_POSITION_OFFSET = 2f;
@@ -16,10 +17,12 @@ public class PlayerBookDefense : PlayerBaseAttack
 	private GameObject m_bookPrefab;
 
 
-	private void Start()
+    private void Start()
 	{
 		m_formulas = new Formulas();
 		spawnBook();
+
+		
 	}
 
 	private void Update()
@@ -48,28 +51,54 @@ public class PlayerBookDefense : PlayerBaseAttack
 
 	private void spawnBook()
 	{
-		if (m_maxBooks <= m_books.Count)
-		{
-			return;
-		}
 
-		Vector2 spawnPosition = new Vector2(transform.position.x + SPAWN_POSITION_OFFSET, transform.position.y);
-		GameObject tempBook = Instantiate(m_bookPrefab, spawnPosition, Quaternion.identity);
-		tempBook.GetComponent<BookBehaviour>().setDamage((int)damage);
-		tempBook.GetComponent<BookBehaviour>().setBookDefense(this);
-		tempBook.transform.parent = transform;
-		m_books.Add(tempBook.transform);
+        //m_maxBooks = currentLevel; // Đặt số lượng sách muốn spawn ở đây
 
-		float separation = 360 / m_books.Count;
-		separation *= Mathf.Deg2Rad;
-		Vector2 previousPosition = m_books[0].position;
-		for (int i = 1; i < m_books.Count; i++)
-		{
-			Transform book = m_books[i];
-			book.position = m_formulas.rotate(previousPosition, separation);
-			previousPosition = book.position;
-		}
-	}
+        //for (int i = 0; i < m_maxBooks; i++)
+        //{
+        //    Vector2 spawnPosition = new Vector2(transform.position.x + SPAWN_POSITION_OFFSET, transform.position.y);
+        //    GameObject tempBook = Instantiate(m_bookPrefab, spawnPosition, Quaternion.identity);
+        //    tempBook.transform.position = spawnPosition;
+        //    tempBook.transform.rotation = Quaternion.identity;
+        //    tempBook.GetComponent<BookBehaviour>().setDamage((int)damage);
+        //    tempBook.GetComponent<BookBehaviour>().setBookDefense(this);
+        //    tempBook.transform.parent = transform;
+        //    m_books.Add(tempBook.transform);
+
+        //    float separation = 360 / m_books.Count;
+        //    separation *= Mathf.Deg2Rad;
+        //    Vector2 previousPosition = m_books[0].position;
+        //    for (int j = 1; j < m_books.Count; j++)
+        //    {
+        //        Transform book = m_books[j];
+        //        book.position = m_formulas.rotate(previousPosition, separation);
+        //        previousPosition = book.position;
+        //    }
+        //}
+        if (m_maxBooks <= m_books.Count)
+        {
+            return;
+        }
+
+        Vector2 spawnPosition = new Vector2(transform.position.x + SPAWN_POSITION_OFFSET, transform.position.y);
+        GameObject tempBook = Instantiate(m_bookPrefab, spawnPosition, Quaternion.identity);
+        tempBook.transform.position = spawnPosition;
+        tempBook.transform.rotation = Quaternion.identity;
+        tempBook.GetComponent<BookBehaviour>().setDamage((int)damage);
+        tempBook.GetComponent<BookBehaviour>().setBookDefense(this);
+        tempBook.transform.parent = transform;
+        m_books.Add(tempBook.transform);
+
+        float separation = 360 / m_books.Count;
+        separation *= Mathf.Deg2Rad;
+        Vector2 previousPosition = m_books[0].position;
+        for (int i = 1; i < m_books.Count; i++)
+        {
+            Transform book = m_books[i];
+            book.position = m_formulas.rotate(previousPosition, separation);
+            previousPosition = book.position;
+        }
+    }
 
 	public void setBookPrefab(GameObject t_gameObject)
 	{
@@ -79,5 +108,7 @@ public class PlayerBookDefense : PlayerBaseAttack
 	public void removeBook(Transform t_book)
 	{
 		m_books.Remove(t_book);
-	}
+
+
+    }
 }
