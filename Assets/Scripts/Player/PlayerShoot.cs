@@ -47,8 +47,9 @@ public class PlayerShoot : PlayerBaseAttack
 
 	private void shootLevel1()
 	{
-		shootBullet(m_playerController.playerDirection);
-	}
+        PlayerDirection direction = m_playerController.playerDirection;
+        shootBullet(direction);
+    }
 
 	private void shootBullet(PlayerDirection t_playerDirection)
 	{
